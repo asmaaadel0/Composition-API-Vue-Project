@@ -65,9 +65,9 @@ main {
 
 button {
   font: inherit;
-  border: 1px solid #00006b;
+  border: 1px solid #ef6666;
   background-color: transparent;
-  color: #00006b;
+  color: #ef6666;
   padding: 0.5rem 1.5rem;
   cursor: pointer;
   margin: 0.5rem 0.5rem 0.5rem 0;
@@ -79,7 +79,7 @@ button:active {
 }
 
 button.selected {
-  background-color: #00006b;
+  background-color: #ef6666;
   color: white;
 }
 </style>
