@@ -11,22 +11,37 @@ import USER_DATA from './dummy-data.js';
 import UserList from './components/users/UserList.vue';
 import ProjectsList from './components/projects/ProjectsList.vue';
 
+import { ref } from 'vue';
+
 export default {
   components: {
     UserList,
     ProjectsList,
   },
-  data() {
-    return {
-      selectedUser: null,
-      activeUsers: USER_DATA,
-    };
-  },
-  methods: {
-    selectUser(uid) {
+  setup() {
+    const selectedUser = ref(null);
+    const activeUsers = ref(USER_DATA);
+
+    function selectUser(uid) {
       this.selectedUser = this.activeUsers.find((usr) => usr.id === uid);
-    },
-  },
+    }
+    return {
+      selectedUser,
+      activeUsers,
+      selectUser
+    }
+  }
+  // data() {
+  //   return {
+  //     selectedUser: null,
+  //     activeUsers: USER_DATA,
+  //   };
+  // },
+  // methods: {
+  // selectUser(uid) {
+  //   this.selectedUser = this.activeUsers.find((usr) => usr.id === uid);
+  //   },
+  // },
 };
 </script>
 
@@ -34,9 +49,11 @@ export default {
 * {
   box-sizing: border-box;
 }
+
 html {
   font-family: sans-serif;
 }
+
 body {
   margin: 0;
 }
@@ -55,6 +72,7 @@ button {
   cursor: pointer;
   margin: 0.5rem 0.5rem 0.5rem 0;
 }
+
 button:hover,
 button:active {
   background-color: #efefff;
