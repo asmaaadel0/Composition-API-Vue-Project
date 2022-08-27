@@ -9,7 +9,7 @@
 - [Contributors <a name = "Contributors"></a>](#contributors-)
 
 ## About <a name = "about"></a>
-- It's a Vue Project with composition API, implemented with html, css, vuejs.
+- It's a Vue Project where I use composition API, implemented with html, css, vuejs.
 
 ## website description <a name = "website-description"></a>
 You can see List of Active Users that you can:
