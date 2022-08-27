@@ -20,10 +20,10 @@ export default {
   },
   setup() {
     const selectedUser = ref(null);
-    const activeUsers = ref(USER_DATA);
+    const activeUsers = USER_DATA;
 
     function selectUser(uid) {
-      this.selectedUser = this.activeUsers.find((usr) => usr.id === uid);
+      this.selectedUser = activeUsers.find((usr) => usr.id === uid);
     }
     return {
       selectedUser,
