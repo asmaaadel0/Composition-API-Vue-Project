@@ -9,12 +9,6 @@
 export default {
   props: ['id', 'userName'],
   emits: ['list-projects'],
-  // setup() {
-  //   function viewProjects() {
-  //     this.$emit('list-projects', this.id);
-  //   }
-  //   return { viewProjects }
-  // }
   methods: {
     viewProjects() {
       this.$emit('list-projects', this.id);

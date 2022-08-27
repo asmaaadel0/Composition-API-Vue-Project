@@ -8,12 +8,6 @@
 export default {
   props: ['searchTerm'],
   emits: ['search'],
-  // setup() {
-  //   function search(event) {
-  //     this.$emit('search', event.target.value);
-  //   }
-  //   return { search }
-  // }
   methods: {
     search(event) {
       this.$emit('search', event.target.value);
