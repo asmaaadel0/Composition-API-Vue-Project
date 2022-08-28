@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import { ref, computed, watch, toRefs } from 'vue';
+import { computed, watch, toRefs } from 'vue';
+import useSearch from '../../hooks/search';
 
 import ProjectItem from './ProjectItem.vue';
 
@@ -23,86 +24,31 @@ export default {
   },
   props: ['user'],
   setup(props) {
-    const enteredSearchTerm = ref('');
-    const activeSearchTerm = ref('');
-
-    const availableProjects = computed(function () {
-      if (activeSearchTerm.value) {
-        return props.user.projects.filter((prj) =>
-          prj.title.includes(activeSearchTerm.value)
-        );
-      }
-      return props.user.projects;
-    });
-
-    const hasProjects = computed(function () {
-      return props.user.projects && availableProjects.value.length > 0;
-    });
-
-    watch(enteredSearchTerm, function (newValue) {
-      setTimeout(() => {
-        if (newValue === enteredSearchTerm.value) {
-          activeSearchTerm.value = newValue;
-        }
-      }, 300);
-    });
-
-    // const propsWithRefs = toRefs(props);
-    // const user = propsWithRefs.user;
-
     const { user } = toRefs(props);
+    const projects = computed(function () {
+      return user.value ? user.value.projects : [];
+    })
+
+    const { enteredSearchTerm, availableItems, updateSearch } = useSearch(projects, 'title');
+    const hasProjects = computed(function () {
+      return props.user.projects && availableItems.value.length > 0;
+    });
+
+
+
 
     watch(user, function () {
       enteredSearchTerm.value = '';
     });
 
-    function updateSearch(val) {
-      enteredSearchTerm.value = val;
-    }
-
     return {
       enteredSearchTerm,
-      availableProjects,
+      availableProjects: availableItems,
       hasProjects,
       updateSearch,
     };
   },
-  // data() {
-  //   return {
-  //     enteredSearchTerm: '',
-  //     activeSearchTerm: '',
-  //   };
-  // },
-  // computed: {
-  //   hasProjects() {
-  //     return this.user.projects && this.availableProjects.length > 0;
-  //   },
-  //   availableProjects() {
-  //     if (this.activeSearchTerm) {
-  //       return this.user.projects.filter((prj) =>
-  //         prj.title.includes(this.activeSearchTerm)
-  //       );
-  //     }
-  //     return this.user.projects;
-  //   },
-  // },
-  // methods: {
-  //   updateSearch(val) {
-  //     this.enteredSearchTerm = val;
-  //   },
-  // },
-  // watch: {
-  //   enteredSearchTerm(val) {
-  //     setTimeout(() => {
-  //       if (val === this.enteredSearchTerm) {
-  //         this.activeSearchTerm = val;
-  //       }
-  //     }, 300);
-  //   },
-  //   user() {
-  //     this.enteredSearchTerm = '';
-  //   },
-  // },
+
 };
 </script>
 

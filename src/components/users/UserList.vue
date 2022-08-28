@@ -16,7 +16,7 @@
 <script>
 import UserItem from './UserItem.vue';
 import useSearch from '../../hooks/search';
-import { ref, computed } from 'vue';
+import { ref, computed, toRefs } from 'vue';
 
 export default {
   components: {
@@ -25,32 +25,9 @@ export default {
   props: ['users'],
   emits: ["list-projects"],
   setup(props) {
-    // const enteredSearchTerm = ref("");
-    // const activeSearchTerm = ref("");
-    // const availableUsers = computed(function () {
-    //   let users = [];
-    //   if (activeSearchTerm.value) {
-    //     users = props.users.filter((usr) =>
-    //       usr.fullName.includes(activeSearchTerm.value)
-    //     );
-    //   } else if (props.users) {
-    //     users = props.users;
-    //   }
-    //   return users;
-    // });
+    const { users } = toRefs(props);
 
-    // watch(enteredSearchTerm, function (val) {
-    //   setTimeout(() => {
-    //     if (val === enteredSearchTerm.value) {
-    //       activeSearchTerm.value = val;
-    //     }
-    //   }, 300);
-    // })
-
-    // function updateSearch(val) {
-    //   enteredSearchTerm.value = val;
-    // }
-    const { enteredSearchTerm, availableItems, updateSearch } = useSearch(props.users, 'fullName');
+    const { enteredSearchTerm, availableItems, updateSearch } = useSearch(users, 'fullName');
 
     const sorting = ref(null);
     const displayedUsers = computed(function () {
