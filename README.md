@@ -24,8 +24,11 @@ You can see List of Active Users that you can:
 - npm run serve
 
 ## Website link <a name = "link"></a>
-
-- https://composition-api-vue-project.netlify.app/
+- Firebase Hosting:
+  - https://reaction-time-game-f1857.web.app/
+  
+- Netlify Hosting:
+  - https://composition-api-vue-project.netlify.app/
 
 ## Contributors <a name = "Contributors"></a>
 
